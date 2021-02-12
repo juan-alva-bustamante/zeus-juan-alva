@@ -26,6 +26,7 @@ export class EmpleadosComponent implements OnInit {
   public empleadoRegistrado($event) {
     this.obtenerEmpleados();
   }
+
   private obtenerEmpleados() {
     this.cargandoEmpleados = true;
     this.empleadosService.obtenerEmpleados().then((response: Array<Empleado>) => {

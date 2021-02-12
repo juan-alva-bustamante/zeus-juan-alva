@@ -1,1 +1,36 @@
-<p>grupos works!</p>
+<div class="container-fluid mt-5">
+
+    <div class="row">
+        <div class="col-lg-6 col-sm-12">
+
+            <div class="form-group form-inline">
+                Buscar grupo por nombre: <input class="form-control ml-2" type="text" name="searchTerm" #searchInput
+                    placeholder="Nombre" (keyup)="buscarGrupo(searchInput.value)" />
+            </div>
+
+            <div class="example-container">
+                <h2>Todos los grupos</h2>
+
+                <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="filterGroups"
+                    [cdkDropListConnectedTo]="[doneList]" class="example-list" (cdkDropListDropped)="drop($event)">
+                    <div class="example-box" *ngFor="let grupo of filterGroups" cdkDrag>{{ grupo.name }}</div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-lg-6 col-sm-12">
+
+            <div class="example-container">
+                <h2>Detalle del grupo</h2>
+
+                <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="showGroup"
+                    [cdkDropListConnectedTo]="[todoList]" class="example-list" (cdkDropListDropped)="drop($event)">
+                    <div class="example-box" *ngFor="let grupo of showGroup" cdkDrag style="height: 250px;">
+                        {{ grupo.name }}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
