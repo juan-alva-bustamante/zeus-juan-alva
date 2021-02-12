@@ -2,7 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EmpleadosService } from 'src/app/services/empleados/empleados.service';
 // ES6 Modules or TypeScript
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-formulario',
@@ -17,7 +17,7 @@ export class FormularioComponent implements OnInit {
   public formSubmitted: boolean;
   // Event emitter cuando se registra un usuario
   @Output() empleadoRegistradoAlert = new EventEmitter<boolean>();
-  
+
   constructor(
     protected formBuilder: FormBuilder,
     protected empleadosService: EmpleadosService
@@ -26,7 +26,7 @@ export class FormularioComponent implements OnInit {
   /**
    * Function para registrar un nuevo empleado
    */
-  registarEmpleado() {
+  registarEmpleado(): void {
     this.formSubmitted = true;
     // Ver el valor del formulario
     console.log('form value ', this.empleadoForm);

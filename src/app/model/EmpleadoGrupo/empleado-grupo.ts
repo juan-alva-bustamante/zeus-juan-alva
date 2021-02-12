@@ -1,4 +1,4 @@
-import { Grupo } from "../Grupo/grupo";
+import { Grupo } from '../Grupo/grupo';
 
 export class EmpleadoGrupo extends Grupo {
 

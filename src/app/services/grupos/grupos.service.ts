@@ -19,7 +19,7 @@ export class GruposService {
     protected http: HttpClient
   ) {
     this.gruposURL = `${environment.gruposURL}:${environment.nombre}`;
-    this.detalleGrupoURL = `${environment.detalleGrupoURL}:${environment.nombre}${environment.detalleGrupoPostFijo}`
+    this.detalleGrupoURL = `${environment.detalleGrupoURL}:${environment.nombre}${environment.detalleGrupoPostFijo}`;
   }
 
   /**

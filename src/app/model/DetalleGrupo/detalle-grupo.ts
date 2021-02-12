@@ -1,5 +1,5 @@
-import { EmpleadoGrupo } from "../EmpleadoGrupo/empleado-grupo";
-import { Grupo } from "../Grupo/grupo"
+import { EmpleadoGrupo } from '../EmpleadoGrupo/empleado-grupo';
+import { Grupo } from '../Grupo/grupo';
 
 export class DetalleGrupo extends Grupo {
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Empleado } from 'src/app/model/Empleado/empleado';
 
@@ -35,7 +35,7 @@ export class EmpleadosService {
 
   /**
    * Funcion para registrar un nuevo empeleado
-   * @param empleado el valor del empleado 
+   * @param empleado el valor del empleado
    * Request:
    * ▪ name
    * ▪ last_name

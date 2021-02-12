@@ -32,7 +32,7 @@ export class GruposComponent implements OnInit {
   /**
    * Function para obtener todos los grupos
    */
-  protected obtenerGrupos() {
+  protected obtenerGrupos(): void {
     this.gruposService.obtenerGrupos().then((response: Array<Grupo>) => {
       console.log('grupos components obtenerGrupos response ', response);
       this.allGroups = response;
@@ -91,7 +91,7 @@ export class GruposComponent implements OnInit {
    * Function para activar o desactivar todos los elementos (checkbox) de una lista de empleados de un grupo
    * @param detalleGrupo se obtiene un modelo de DetalleGrupo
    */
-  public activarGrupo(detalleGrupo: DetalleGrupo) {
+  public activarGrupo(detalleGrupo: DetalleGrupo): void {
     detalleGrupo.active = !detalleGrupo.active;
     const active = detalleGrupo.active;
     detalleGrupo.empleados.map((empleado: EmpleadoGrupo) => {
@@ -103,7 +103,7 @@ export class GruposComponent implements OnInit {
    * Funcion para mostrar los empleados seleccionados en un grupo
    * @param grupo el grupo para mostrar
    */
-  public mostrarSeleccionados(grupo: DetalleGrupo) {
+  public mostrarSeleccionados(grupo: DetalleGrupo): void {
     const empleados = grupo.empleados.filter((empleado) => empleado.selected === true);
     console.log('Empleados seleccionados ', empleados);
   }
@@ -125,7 +125,7 @@ export class GruposComponent implements OnInit {
   /**
    * Funcion para mostrar todos los empleados seleccionados en la lista de gruopos
    */
-  public mostrarTodosSeleccionados() {
+  public mostrarTodosSeleccionados(): void {
     this.detalleGrupo.forEach((grupo: DetalleGrupo) => {
       const empleados = grupo.empleados.filter((empleado) => empleado.selected === true);
       console.log(`Empleados seleccionados en grupo ${grupo.name}: `, empleados);
