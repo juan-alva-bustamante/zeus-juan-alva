@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Empleado } from 'src/app/model/Empleado/empleado';
 import { EmpleadosService } from 'src/app/services/empleados/empleados.service';
 import { environment } from 'src/environments/environment';
+import * as Moment from 'moment';
 
 @Component({
   selector: 'app-empleados',
@@ -81,6 +82,12 @@ export class EmpleadosComponent implements OnInit {
       this.buscadorEmpleados = this.empleados.filter(empleado => empleado.name.includes(filterValue));
       this.refreshEmpleados();
     }
+  }
+
+  public parseEpochFormatDate(date: number): string {
+    const dateMoment = Moment(date).add(1, 'day');
+
+    return `${dateMoment.date()}/${dateMoment.month() + 1}/${dateMoment.year()}`;
   }
 
   ngOnInit(): void {

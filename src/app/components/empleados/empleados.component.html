@@ -18,7 +18,7 @@
                             <th scope="col">#</th>
                             <th scope="col">Nombre</th>
                             <th scope="col">Apellido</th>
-                            <th scope="col">Fecha Nacimiento</th>
+                            <th scope="col">Cumpleaños (DD/MM/YYYY)</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -28,7 +28,7 @@
                                 {{ empleado.name }}
                             </td>
                             <td>{{ empleado.last_name }}</td>
-                            <td>{{ empleado.birthday }}</td>
+                            <td>{{ parseEpochFormatDate(empleado.birthday) }}</td>
                         </tr>
                     </tbody>
                 </table>
