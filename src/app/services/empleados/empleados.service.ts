@@ -19,14 +19,23 @@ export class EmpleadosService {
     this.empleadoURL = `${environment.empleadosURL}:${this.nombre}`;
   }
 
-  public obtenerEmpleados(): Promise<any> {
+  public obtenerEmpleados(): Promise<Empleado[]> {
     return this.http.get(this.empleadoURL).toPromise().then((response: any) => {
-      console.log('empleadis service response obtenerEmpleados ', response);
+      console.log('empleados service response obtenerEmpleados ', response);
       return response.data.employees.map((employee) => {
         return new Empleado(employee);
       });
     }).catch((err) => {
-      console.error('empleadis service error obtenerEmpleados ', err);
+      console.error('empleados service error obtenerEmpleados ', err);
+    });
+  }
+
+  public registrarEmpleado(empleado: any): Promise<any> {
+    return this.http.post(this.empleadoURL, empleado).toPromise().then((response: any) => {
+      console.log('empleados service response registrarEmpleado ', response);
+      return response.data;
+    }).catch((err) => {
+      console.error('empleados service error registrarEmpleado ', err);
     });
   }
 }

@@ -1,44 +1,57 @@
-<div class="container" *ngIf="!cargandoEmpleados; else loaderCargando">
-    <div class="form-group form-inline">
-        Buscar empleado por nombre: <input class="form-control ml-2" type="text" name="searchTerm" #searchInput placeholder="Nombre"
-            (keyup)="buscarEmpleado(searchInput.value)" />
-    </div>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Apellido</th>
-                <th scope="col">Fecha Nacimiento</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let empleado of empleadosTable">
-                <th scope="row">{{ empleado.id }}</th>
-                <td>
-                    {{ empleado.name }}
-                </td>
-                <td>{{ empleado.last_name }}</td>
-                <td>{{ empleado.birthday }}</td>
-            </tr>
-        </tbody>
-    </table>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-4 col-sm-12">
+            <div class="container pt-2 pb-2 mt-4 mb-2 card">
+                <app-formulario (empleadoRegistradoAlert)="empleadoRegistrado($event)"></app-formulario>
+            </div>
 
-    <div class="d-flex justify-content-between p-2">
-        <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"
-            (pageChange)="refreshEmpleados()">
-        </ngb-pagination>
+        </div>
+        <div class="col-lg-8 col-sm-12">
+            <div class="container pt-2 pb-2 mt-4 mb-2 card" *ngIf="!cargandoEmpleados; else loaderCargando">
+                <div class="form-group form-inline">
+                    Buscar empleado por nombre: <input class="form-control ml-2" type="text" name="searchTerm"
+                        #searchInput placeholder="Nombre" (keyup)="buscarEmpleado(searchInput.value)" />
+                </div>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Apellido</th>
+                            <th scope="col">Fecha Nacimiento</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let empleado of empleadosTable">
+                            <th scope="row">{{ empleado.id }}</th>
+                            <td>
+                                {{ empleado.name }}
+                            </td>
+                            <td>{{ empleado.last_name }}</td>
+                            <td>{{ empleado.birthday }}</td>
+                        </tr>
+                    </tbody>
+                </table>
 
-        <select class="custom-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshEmpleados()">
-            <option [ngValue]="5">5 elementos por pagina</option>
-            <option [ngValue]="10">10 elementos por pagina</option>
-            <option [ngValue]="15">15 elementos por pagina</option>
-        </select>
+                <div class="d-flex justify-content-between p-2">
+                    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"
+                        (pageChange)="refreshEmpleados()">
+                    </ngb-pagination>
+
+                    <select class="custom-select" style="width: auto" [(ngModel)]="pageSize"
+                        (ngModelChange)="refreshEmpleados()">
+                        <option [ngValue]="5">5 elementos por pagina</option>
+                        <option [ngValue]="10">10 elementos por pagina</option>
+                        <option [ngValue]="15">15 elementos por pagina</option>
+                    </select>
+                </div>
+            </div>
+
+            <ng-template #loaderCargando>
+                <div class="container">
+                    <h6>Cargando empleados...</h6>
+                </div>
+            </ng-template>
+        </div>
     </div>
 </div>
-
-<ng-template #loaderCargando>
-    <div class="container">
-        <h6>Cargando empleados...</h6>
-    </div>
-</ng-template>

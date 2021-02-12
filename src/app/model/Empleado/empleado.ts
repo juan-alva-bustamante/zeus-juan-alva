@@ -17,6 +17,14 @@ export class Empleado {
         this.$birthday = empleado.birthday;
     }
 
+    public get value(): any {
+        return {
+            name: this.name,
+            last_name: this.last_name,
+            birthday: this.$birthday,
+        };
+    }
+
     public get id(): number {
         return this.$id;
     }
