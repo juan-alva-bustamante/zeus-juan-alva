@@ -23,7 +23,7 @@
         </small>
     </div>
     <div class="mb-3">
-        <label for="nombre" class="form-label">Fecha Cumpleaños</label>
+        <label for="nombre" class="form-label">Fecha de Nacimiento</label>
         <input type="date" class="form-control" id="birthday" aria-describedby="nombreHelp"
             placeholder="Fecha Nacimiento" formControlName="birthday">
         <small *ngIf="formSubmitted && empleadoForm.get('birthday').hasError('required')" style="color: red;">
