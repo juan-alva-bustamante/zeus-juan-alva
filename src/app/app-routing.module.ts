@@ -5,7 +5,8 @@ import { InicioComponent } from './components/inicio/inicio.component';
 const routes: Routes = [
   {
     path: 'inicio',
-    component: InicioComponent
+    component: InicioComponent,
+    // loadChildren: () => import('./components/inicio/').then(m => m.HomePractitionerModule)
   },
   {
     path: 'empleados',
