@@ -1,4 +1,4 @@
-<div class="container-fluid mt-5">
+<div class="container mt-5">
 
     <div class="row">
         <div class="col-lg-6 col-sm-12">
@@ -18,19 +18,58 @@
             </div>
 
         </div>
-        <div class="col-lg-6 col-sm-12">
+        <div class="col-lg-6 col-sm-12 pt-5">
 
             <div class="example-container">
                 <h2>Detalle del grupo</h2>
 
                 <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="showGroup"
                     [cdkDropListConnectedTo]="[todoList]" class="example-list" (cdkDropListDropped)="drop($event)">
-                    <div class="example-box" *ngFor="let grupo of showGroup" cdkDrag style="height: 250px;">
-                        {{ grupo.name }}
+
+                    <div class="group-details-box" *ngFor="let grupo of detalleGrupo" cdkDrag>
+
+                        <div class="row m-0 p-0 mb-1 pb-1">
+                            <div class="col-lg-6 col-sm-12">
+                                <h6>
+                                    <input type="checkbox" value="" id="flexCheckDefault" [checked]="grupo.active"
+                                        (change)="activarGrupo(grupo)">
+                                    {{ grupo.name }}
+                                </h6>
+                            </div>
+                            <div class="col-lg-6 col-sm-12">
+                                <button type="button" class="btn btn-danger btn-sm" (click)="removerDeLista(grupo)">
+                                    Remover grupo
+                                </button>
+                            </div>
+                        </div>
+
+                        <ul>
+                            <li *ngFor="let empleado of grupo.empleados">
+                                <input type="checkbox" value="" id="flexCheckDefault" [checked]="empleado.selected"
+                                    (change)="empleado.selected = !empleado.selected">
+                                {{ empleado.name }}
+                            </li>
+                        </ul>
+
+                        <button type="button" class="btn btn-primary btn-block" (click)="mostrarSeleccionados(grupo)">
+                            Continuar
+                        </button>
+
                     </div>
+
                 </div>
+
             </div>
 
+        </div>
+
+        <div class="row">
+            <div class="col lg-6 col sm-12"></div>
+            <div class="col lg-6 col sm-12">
+                <button type="button" class="btn btn-primary btn-block" (click)="mostrarTodosSeleccionados()">
+                    Continuar
+                </button>
+            </div>
         </div>
     </div>
 </div>
