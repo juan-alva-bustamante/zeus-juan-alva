@@ -7,12 +7,13 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatCheckboxModule } from '@angular/material/checkbox';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+
+// Importacion de componentes
 import { InicioComponent } from './components/inicio/inicio.component';
 import { GruposComponent } from './components/grupos/grupos.component';
 import { EmpleadosComponent } from './components/empleados/empleados.component';

@@ -4,7 +4,6 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem, CdkDrag } from '@angul
 import { Grupo } from 'src/app/model/Grupo/grupo';
 import { EmpleadoGrupo } from 'src/app/model/EmpleadoGrupo/empleado-grupo';
 import { DetalleGrupo } from 'src/app/model/DetalleGrupo/detalle-grupo';
-import { Empleado } from 'src/app/model/Empleado/empleado';
 
 @Component({
   selector: 'app-grupos',
@@ -13,11 +12,14 @@ import { Empleado } from 'src/app/model/Empleado/empleado';
 })
 export class GruposComponent implements OnInit {
 
+  // Listado de todos los grupos
   public allGroups: Array<Grupo>;
+  // Grupos en columna derecha
   public showGroup: Array<Grupo>;
-
+  // Filtado para mostrar detalles de grupo
   public filterGroups: Array<Grupo>;
-  public detalleGrupo: Array<any>;
+  // Detalle del grupo
+  public detalleGrupo: Array<DetalleGrupo>;
 
   constructor(
     protected gruposService: GruposService
@@ -27,6 +29,9 @@ export class GruposComponent implements OnInit {
     this.detalleGrupo = [];
   }
 
+  /**
+   * Function para obtener todos los grupos
+   */
   protected obtenerGrupos() {
     this.gruposService.obtenerGrupos().then((response: Array<Grupo>) => {
       console.log('grupos components obtenerGrupos response ', response);
@@ -39,6 +44,10 @@ export class GruposComponent implements OnInit {
     });
   }
 
+  /**
+   * Drang and drop funcion para obtener el evento
+   * @param event el evento del drop
+   */
   public async drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
@@ -51,6 +60,9 @@ export class GruposComponent implements OnInit {
     this.detalleGrupo = await this.obtenerDetallesDelGrupo();
   }
 
+  /**
+   * Funciton para obtener los detalles de los grupos
+   */
   public async obtenerDetallesDelGrupo() {
     return await Promise.all(this.showGroup.map(async grupo => {
       return new DetalleGrupo({
@@ -62,6 +74,10 @@ export class GruposComponent implements OnInit {
     }));
   }
 
+  /**
+   * Funcion para filtrar los grupos
+   * @param input el input del grupo a buscar
+   */
   public buscarGrupo(input: string): void {
     if (input === '') {
       this.filterGroups = this.allGroups;
@@ -71,6 +87,10 @@ export class GruposComponent implements OnInit {
     }
   }
 
+  /**
+   * Function para activar o desactivar todos los elementos (checkbox) de una lista de empleados de un grupo
+   * @param detalleGrupo se obtiene un modelo de DetalleGrupo
+   */
   public activarGrupo(detalleGrupo: DetalleGrupo) {
     detalleGrupo.active = !detalleGrupo.active;
     const active = detalleGrupo.active;
@@ -79,11 +99,19 @@ export class GruposComponent implements OnInit {
     });
   }
 
+  /**
+   * Funcion para mostrar los empleados seleccionados en un grupo
+   * @param grupo el grupo para mostrar
+   */
   public mostrarSeleccionados(grupo: DetalleGrupo) {
     const empleados = grupo.empleados.filter((empleado) => empleado.selected === true);
     console.log('Empleados seleccionados ', empleados);
   }
 
+  /**
+   * Funcion para remover un grupo de la lista
+   * @param grupo el grupo a remover
+   */
   public async removerDeLista(grupo: DetalleGrupo) {
     this.showGroup.forEach((grupoEnLista: Grupo, index: number) => {
       if (grupoEnLista.id === grupo.id) {
@@ -94,10 +122,13 @@ export class GruposComponent implements OnInit {
     this.detalleGrupo = await this.obtenerDetallesDelGrupo();
   }
 
+  /**
+   * Funcion para mostrar todos los empleados seleccionados en la lista de gruopos
+   */
   public mostrarTodosSeleccionados() {
     this.detalleGrupo.forEach((grupo: DetalleGrupo) => {
       const empleados = grupo.empleados.filter((empleado) => empleado.selected === true);
-    console.log(`Empleados seleccionados en grupo ${grupo.name}: `, empleados);
+      console.log(`Empleados seleccionados en grupo ${grupo.name}: `, empleados);
     });
   }
 

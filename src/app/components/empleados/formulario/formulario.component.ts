@@ -11,8 +11,11 @@ import Swal from 'sweetalert2'
 })
 export class FormularioComponent implements OnInit {
 
+  // Form group del empleado
   public empleadoForm: FormGroup;
+  // Bandera para saber cuando se da click en el boton para enviar el formulario
   public formSubmitted: boolean;
+  // Event emitter cuando se registra un usuario
   @Output() empleadoRegistradoAlert = new EventEmitter<boolean>();
   
   constructor(
@@ -20,8 +23,12 @@ export class FormularioComponent implements OnInit {
     protected empleadosService: EmpleadosService
   ) { }
 
+  /**
+   * Function para registrar un nuevo empleado
+   */
   registarEmpleado() {
     this.formSubmitted = true;
+    // Ver el valor del formulario
     console.log('form value ', this.empleadoForm);
 
     if (this.empleadoForm.invalid) { return; }
@@ -57,6 +64,7 @@ export class FormularioComponent implements OnInit {
 
 
   ngOnInit(): void {
+    // Inicializar el formulario
     this.empleadoForm = this.formBuilder.group({
       name: ['', [Validators.required, Validators.maxLength(30)]],
       last_name: ['', [Validators.required, Validators.maxLength(30)]],
