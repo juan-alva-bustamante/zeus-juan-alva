@@ -23,10 +23,6 @@ Run the command `git clone https://github.com/juan-alva-bustamante/zeus-juan-alv
 
 Navigate to folder `zeus-juan-alva`.
 
-Run the command `git clone https://github.com/juan-alva-bustamante/zeus-juan-alva.git` to download project.
-
-Navigate to folder `zeus-juan-alva`.
-
 ## Install dependencies
 
 Run `npm install` for install the dependencies added to this project.
