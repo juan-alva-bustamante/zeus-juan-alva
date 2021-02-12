@@ -7,13 +7,15 @@ import { InicioComponent } from './components/inicio/inicio.component';
 import { GruposComponent } from './components/grupos/grupos.component';
 import { EmpleadosComponent } from './components/empleados/empleados.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     InicioComponent,
     GruposComponent,
-    EmpleadosComponent
+    EmpleadosComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
